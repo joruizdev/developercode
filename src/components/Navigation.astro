@@ -1,0 +1,66 @@
+---
+const NAVIGATION_LINKS = [
+    {
+        title: 'Home',
+        href: '#top',
+    },
+    {
+        title: 'About',
+        href: '#about',
+    },
+    {
+        title: 'Services',
+        href: '#services',
+    },
+    {
+        title: 'Portfolio',
+        href: '#portfolio',
+    },
+    {
+        title: 'Contact',
+        href: '#contact',
+    },
+]
+
+const SOCIAL_LINKS = [
+    {
+        title: 'github',
+        href: 'https://github.com/joruizdev',
+        icon: 'github.svg'
+    },
+    {
+        title: 'linkedin',
+        href: 'https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/',
+        icon: 'linkedin.svg'
+    },
+    {
+        title: 'twitter',
+        href: 'https://twitter.com/joruizdev',
+
+        icon: 'twitter.svg'
+    },
+    {
+        title: 'instagram',
+        href: 'https://www.instagram.com/joruizdev/',
+        icon: 'instagram.svg'
+    },
+]
+---
+
+<nav class="flex justify-between items-center py-4 text-[#00ADB5]">
+    <div class="flex gap-2 items-center justify-center text-2xl">
+        <span>λ~</span>
+        <span>developercode</span>
+    </div>
+    <ul class="flex gap-4 justify-end py-4">
+        {
+            NAVIGATION_LINKS.map(({ title, href }) => {
+                return (
+                    <li class="p-2 rounded-md hover:text-[#EEEEEE] hover:bg-[#393E46]">
+                        <a href={href}>{title}</a>
+                    </li>
+                )
+            })
+        }
+    </ul>
+</nav>

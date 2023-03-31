@@ -1,0 +1,23 @@
+---
+import Navigation from "../components/Navigation.astro";
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link href="/public/styles/index.css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body class="container mx-auto bg-[#222831]">
+		<Navigation />
+		<section class="flex flex-col gap-3 items-start pt-32">
+			<p class="text-[#00ADB5]">Hola, mi nombre es</p>
+			<h1 class="text-6xl font-bold text-[#00FFF5] pb-10">Jorge Ruiz</h1>
+			<p class="text-[#EEEEEE]">Desarrollador web fullstack</p>
+			<a class="py-2 px-4 rounded-md bg-[#EEEEEE] text-[#00ADB5] mt-14 hover:bg-[#00ADB5] hover:text-[#EEEEEE]">Contáctame</a>
+		</section>
+	</body>
+</html>
