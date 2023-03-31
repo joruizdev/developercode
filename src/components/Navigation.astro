@@ -1,4 +1,6 @@
 ---
+import MenuIcon from "./MenuIcon.astro";
+
 const NAVIGATION_LINKS = [
     {
         title: 'Home',
@@ -52,6 +54,15 @@ const SOCIAL_LINKS = [
         <span>λ~</span>
         <span>developercode</span>
     </div>
+
+    <input type='checkbox' id='menu' hidden class='peer' />
+	<label
+		for='menu'
+		class='bg-zinc-800 w-14 h-14 border-zinc-500 flex items-center justify-center rounded-full border fixed right-4 bottom-4 xl:relative z-50 xl:hidden peer-checked:[&>.first]:hidden peer-checked:[&>.last]:block cursor-pointer hover:scale-125 transition hover:border-white'
+	>
+		<MenuIcon />
+	</label>
+
     <ul class="flex gap-4 justify-end py-4">
         {
             NAVIGATION_LINKS.map(({ title, href }) => {
@@ -64,3 +75,76 @@ const SOCIAL_LINKS = [
         }
     </ul>
 </nav>
+
+
+<script type='module'>
+    const sections = document.querySelectorAll('main > section')
+    const links = document.querySelectorAll('#navbar a')
+    
+    let direction = 'up'
+    let prevYPosition = 0
+    
+    const setScrollDirection = () => {
+        direction =
+                document.documentElement.scrollTop > prevYPosition ? 'down' : 'up'
+    
+        prevYPosition = document.documentElement.scrollTop
+    }
+    
+    const options = {
+        root: null,
+        threshold: 0,
+        rootMargin: '0px'
+    }
+    
+    const getTargetSection = (entry) => {
+        const index = sections.findIndex((section) => section === entry.target)
+    
+        if (index >= sections.length - 1) {
+            return entry.target
+        } else {
+            return sections[index + 1]
+        }
+    }
+    
+    const updateLink = (target) => {
+        console.log('updateLink', target)
+    }
+    
+    const onIntersect = (entries) => {
+        entries.forEach((entry) => {
+            if (document.documentElement > prevYPosition) {
+                direction = 'down'
+            } else {
+                direction = 'up'
+            }
+    
+            prevYPosition = document.documentElement.scrollTop
+    
+            const target =
+                    direction === 'down' ? getTargetSection(entry) : entry.target
+    
+            if (shouldUpdate(entry)) {
+                updateLink(target)
+            }
+        })
+    }
+    
+    const shouldUpdate = (entry) => {
+        if (direction === 'down' && !entry.isIntersecting) {
+            return true
+        }
+    
+        if (direction === 'up' && entry.isIntersecting) {
+            return true
+        }
+    
+        return false
+    }
+    
+    const observer = new IntersectionObserver(onIntersect, options)
+    
+    sections.forEach((section) => {
+        observer.observe(section)
+    })
+    </script>
