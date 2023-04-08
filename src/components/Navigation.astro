@@ -1,5 +1,6 @@
 ---
 import MenuIcon from "./MenuIcon.astro";
+import { Icons } from "../components/Icons.jsx";
 
 const NAVIGATION_LINKS = [
     {
@@ -26,24 +27,26 @@ const NAVIGATION_LINKS = [
 
 const SOCIAL_LINKS = [
     {
+        component: Icons.github,
         title: 'github',
         href: 'https://github.com/joruizdev',
-        icon: '/images/icons/github.svg'
+        icon: 'github.svg'
     },
     {
+        component: Icons.linkedin,
         title: 'linkedin',
         href: 'https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/',
-        icon: '/images/icons/linkedin.svg'
+        icon: 'linkedin.svg'
     }
 ]
 ---
-    <input type='checkbox' id='menu' hidden class='peer' />
-	<label
-		for='menu'
-		class='bg-zinc-800 w-14 h-14 border-zinc-500 flex items-center justify-center rounded-full border fixed right-4 bottom-4 xl:relative z-50 xl:hidden peer-checked:[&>.first]:hidden peer-checked:[&>.last]:block cursor-pointer hover:scale-125 transition hover:border-white'
-	>
-		<MenuIcon />
-	</label>
+  <input type='checkbox' id='menu' hidden class='peer' />
+  <label
+      for='menu'
+      class=' w-14 h-14  flex items-center justify-center bottom-4 xl:relative z-50 xl:hidden peer-checked:[&>.first]:hidden peer-checked:[&>.last]:block cursor-pointer transition hover:border-white'
+    >
+    <MenuIcon />
+  </label>
 
     <nav
 		id='navbar'
@@ -53,26 +56,26 @@ const SOCIAL_LINKS = [
 			{
 				NAVIGATION_LINKS.map(({ title, href }) => {
 					return (
-						<li class="text-yellow-500 text-xl font-semibold">
+						<li class="text-[#00ADB5] text-xl font-semibold">
               <a href={href}>{title}</a>
 						</li>
 					)
 				})
 			}
 		</ul>
-    <ul class="flex justify-center items-center gap-4 pb-5">
+    <ul class="flex justify-center items-center gap-4">
       {
-        SOCIAL_LINKS.map(({icon, href}) => {
+        SOCIAL_LINKS.map(({component: Icon, href}) => {
           return (
-          <li class="bg-yellow-500 w-8 h-8 p-1 rounded-full flex items-center justify-center hover:bg-white hover:border hover:border-blue-light">
+          <li class="border border-[#00ADB5] hover:border-stone-900 hover:bg-stone-100  w-8 h-8 p-1 rounded-full flex items-center justify-center text-[#00ADB5] hover:text-stone-900 transition-all duration-500 ease-in-out">
             <a href={href} target="_blank">
-              <img class="w-6 h-6" src={icon} />
+              <Icon />
             </a>
           </li>
           )
         })
       }
-    </ul>
+  </ul>
 
 	</nav>
 
