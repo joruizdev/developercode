@@ -1,0 +1,49 @@
+---
+const PROJECTS = [
+    {
+        title: 'Medicos Salud',
+        description: 'Página web realizada para la empresa para la cual trabajé',
+        technology: 'HTML, Tailwind, Astro, React',
+        image: '/images/website-medicossalud.png',
+        url: 'https://www.medicossalud.com'
+    },
+    {
+        title: 'Medicos Salud',
+        description: 'Página web realizada para la empresa para la cual trabajé',
+        technology: 'HTML, Tailwind, Astro, React',
+        image: '/images/website-medicossalud.png',
+        url: 'https://www.medicossalud.com'
+    },
+    {
+        title: 'Medicos Salud',
+        description: 'Página web realizada para la empresa para la cual trabajé',
+        technology: 'HTML, Tailwind, Astro, React',
+        image: '/images/website-medicossalud.png',
+        url: 'https://www.medicossalud.com'
+    }
+]
+---
+<section class="bg-center pb-24">
+    <h2 id="projects" class="text-center text-4xl text-primary pb-5">Projects</h2>
+    <div class="grid gap-5">
+        {
+            PROJECTS.map(projects => {
+                return (
+                    <article class="rounded-md bg-slate-700 mx-5">
+                      <a href={projects.url}>
+                        <img
+                          class="rounded-t-md w-full"
+                          src={projects.image}
+                          alt={projects.title} />
+                      </a>
+                      <footer class="text-[#EEEEEE]">
+                        <h3 class="p-2 text-2xl">{projects.title}</h3>
+                        <p class="p-2">{projects.description}</p>
+                        <p class="p-2">{projects.technology}</p>
+                      </footer>
+                    </article>
+                )
+            })
+        }
+    </div>
+</section>
