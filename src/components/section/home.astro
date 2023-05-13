@@ -1,0 +1,47 @@
+---
+import Header from "../Header.astro";
+import { Icons } from "../Icons.jsx";
+
+const SOCIAL_LINKS = [
+    {
+        component: Icons.github,
+        title: 'github',
+        href: 'https://github.com/joruizdev',
+        icon: 'github.svg'
+    },
+    {
+        component: Icons.linkedin,
+        title: 'linkedin',
+        href: 'https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/',
+        icon: 'linkedin.svg'
+    }
+]
+
+---
+<section class="h-screen bg-center mb-24">
+    <Header />
+    <div class="px-5 flex flex-col gap-4">
+        <h1 class="text-5xl pt-56 font-semibold text-primary">Jorge Ruiz</h1>
+        <p class="text-[#EEEEEE]">Desarrollador de software</p>
+    </div>
+    <footer class="absolute px-5 bottom-5 flex justify-between items-end w-full">
+        <ul class="flex flex-col justify-center items-center gap-4">
+            {
+                SOCIAL_LINKS.map(({component: Icon, href}) => {
+                    return (
+                    <li class="border border-[#00ADB5] hover:border-stone-900 hover:bg-stone-100  w-8 h-8 p-1 rounded-full flex items-center justify-center text-[#00ADB5] hover:text-stone-900 transition-all duration-500 ease-in-out">
+                        <a href={href} target="_blank">
+                            <Icon />
+                        </a>
+                    </li>
+                    )
+                })
+            }
+    </ul>
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00ADB5" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
+    </div>
+    </footer>
+</section>
