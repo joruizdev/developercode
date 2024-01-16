@@ -1,58 +1,77 @@
 ---
 import MenuIcon from "./MenuIcon.astro";
-import { Icons } from "../components/Icons.jsx";
+import { github, linkedin } from './Icons'
 
 const NAVIGATION_LINKS = [
     {
-        title: 'Home',
+        title: 'Inicio',
         href: '#top',
     },
     {
-        title: 'Projects',
+        title: 'Proyectos',
         href: '#projects',
     },
     {
-        title: 'About',
+        title: 'Experiencia',
+        href: '#experience',
+    },
+    {
+        title: 'Sobre mí',
         href: '#about',
     },
     {
-        title: 'Contact',
+        title: 'Contáctame',
         href: '#contact',
     },
 ]
 
 const SOCIAL_LINKS = [
     {
-        component: Icons.github,
+        component: github,
         title: 'github',
         href: 'https://github.com/joruizdev',
         icon: 'github.svg'
     },
     {
-        component: Icons.linkedin,
+        component: linkedin,
         title: 'linkedin',
         href: 'https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/',
         icon: 'linkedin.svg'
     }
 ]
+
 ---
   <input type='checkbox' id='menu' hidden class='peer' />
+  <nav
+		class=''
+	>
+		<ul class='flex gap-4 px-5' id="navigation">
+			{
+				NAVIGATION_LINKS.map(({ title, href }) => {
+					return (
+						<li class="text-[#fff] text-sm font-semibold">
+              <a href={href}>{title}</a>
+						</li>
+					)
+				})
+			}
+		</ul>
+    
   <label
       for='menu'
-      class=' w-14 h-14  flex items-center justify-center bottom-4 xl:relative z-50 xl:hidden peer-checked:[&>.first]:hidden peer-checked:[&>.last]:block cursor-pointer transition hover:border-white'
-    >
+      class='w-10 h-10 bg-gray-800 border-fountain-blue-500 flex items-center justify-center rounded-full fixed right-4 top-5 xl:relative z-50 xl:hidden peer-checked:[&>.first]:hidden peer-checked:[&>.last]:block cursor-pointer transition'>
     <MenuIcon />
   </label>
 
     <nav
 		id='navbar'
-		class='min-h-screen last fixed top-0 left-0 pointer-events-none opacity-0 peer-checked:opacity-100 peer-checked:pointer-events-auto right-0 z-40 flex py-12 px-8 bg-black/30 backdrop-blur-lg xl:bg-transparent text-center xl:opacity-100 xl:hidden xl:pointer-events-auto xl:min-h-0 xl:relative xl:px-0 justify-center flex-col xl:backdrop-blur-0 xl:mt-1 transition-opacity xl:transition-all'
+		class='min-h-screen last fixed top-0 left-0 pointer-events-none opacity-0 peer-checked:opacity-100 peer-checked:pointer-events-auto right-0 z-40 flex py-12 px-8 backdrop-blur-lg xl:bg-transparent text-center xl:opacity-100 xl:hidden xl:pointer-events-auto xl:min-h-0 xl:relative xl:px-0 justify-center flex-col xl:backdrop-blur-0 xl:mt-1 transition-opacity xl:transition-all'
 	>
 		<ul class='flex flex-col gap-y-8 mb-20'>
 			{
 				NAVIGATION_LINKS.map(({ title, href }) => {
 					return (
-						<li class="text-[#00ADB5] text-xl font-semibold">
+						<li class="text-fountain-blue-500 text-xl font-semibold">
               <a href={href}>{title}</a>
 						</li>
 					)
@@ -63,7 +82,7 @@ const SOCIAL_LINKS = [
       {
         SOCIAL_LINKS.map(({component: Icon, href}) => {
           return (
-          <li class="border border-[#00ADB5] hover:border-stone-900 hover:bg-stone-100  w-8 h-8 p-1 rounded-full flex items-center justify-center text-[#00ADB5] hover:text-stone-900 transition-all duration-500 ease-in-out">
+          <li class="border border-fountain-blue-500 hover:border-stone-900 hover:bg-stone-100  w-8 h-8 p-1 rounded-full flex items-center justify-center text-fountain-blue-500 hover:text-stone-900 transition-all duration-500 ease-in-out">
             <a href={href} target="_blank">
               <Icon />
             </a>
@@ -74,6 +93,42 @@ const SOCIAL_LINKS = [
   </ul>
 
 	</nav>
+
+  <script type='module'>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navigation = document.getElementById('navigation');
+      // Agrega un event listener a la lista de navegación
+      navigation.addEventListener('click', (event) => {
+        const target = event.target.closest('li');
+        if (target) {
+          const a = target.querySelector('a')
+          const href = a.href
+          // Resalta el enlace activo
+          history.pushState(null, null, href);
+          highlightActiveLink(target);
+        }
+      });
+
+      // Resalta el enlace activo basándose en la URL actual
+      function highlightActiveLink(target) {
+        const a = target.querySelector('a')
+        const href = a.href.split('/')[3]
+        const path = window.location.hash
+
+        const links = navigation.querySelectorAll('li');
+        links.forEach((link) => {
+          link.classList.add('text-[#fff]', path === href);
+          link.classList.remove('text-fountain-blue-500', path === href);
+        })
+
+        if (path === href) {
+            target.classList.add('text-fountain-blue-500')
+            target.classList.remove('text-[#fff]')
+          }
+      }
+
+    });
+  </script>
 
 
   <script type='module'>

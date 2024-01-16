@@ -1,16 +1,16 @@
 ---
-import { Icons } from "./Icons";
+import { github, linkedin } from "./Icons";
 import Navigation from "./Navigation.astro";
 
 const SOCIAL_LINKS = [
     {
-        component: Icons.github,
+        component: github,
         title: 'github',
         href: 'https://github.com/joruizdev',
         icon: 'github.svg'
     },
     {
-        component: Icons.linkedin,
+        component: linkedin,
         title: 'linkedin',
         href: 'https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/',
         icon: 'linkedin.svg'
@@ -18,10 +18,10 @@ const SOCIAL_LINKS = [
 ]
 ---
 
-<header class="flex justify-between text-xl items-center p-5 text-[#00ADB5]">
+<header class="flex justify-between text-xl items-center p-5 text-fountain-blue-500 absolute xl:w-full">
   <div class="flex items-center justify-center">
-    <span class="w-10 h-10 border-2 border-[#00ADB5] rounded-full flex items-center justify-center">λ~</span>
-    <span class="hidden">developercode</span>
+    <span class="w-10 h-10 border-2 border-fountain-blue-500 rounded-full flex items-center justify-center">λ~</span>
+    <span class="hidden xl:block">developercode</span>
   </div>
   <Navigation />
   <!-- <ul class="flex justify-center items-center gap-4">

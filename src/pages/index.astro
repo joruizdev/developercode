@@ -1,9 +1,10 @@
 ---
-import About from "../components/section/about.astro";
+import Experience from "../components/section/experience.astro";
 import Contact from "../components/section/contact.astro";
 import Footer from "../components/section/footer.astro";
 import Home from "../components/section/home.astro";
-import Project from "../components/section/project.astro";
+import Project from "../components/section/project.jsx";
+import About from "../components/section/about.astro";
 
 ---
 
@@ -14,14 +15,16 @@ import Project from "../components/section/project.astro";
 		<link href="/styles/index.css" rel="stylesheet" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Jorge Developercode</title>
 	</head>
+
+	
 	<body class="container mx-auto bg-[#222831]">
 		<Home />
 		<Project />
+		<Experience />
 		<About />
 		<Contact />
 		<Footer />
 	</body>	
 </html>
-
