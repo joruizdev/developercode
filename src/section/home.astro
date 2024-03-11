@@ -1,0 +1,85 @@
+---
+import Github from "../icon/Github.astro";
+import Linkedin from "../icon/Linkedin.astro";
+Linkedin;
+
+const SOCIAL_LINKS = [
+  {
+    component: Github,
+    title: "Github",
+    href: "https://github.com/joruizdev",
+    icon: "github.svg",
+  },
+  {
+    component: Linkedin,
+    title: "Linkedin",
+    href: "https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/",
+    icon: "linkedin.svg",
+  },
+];
+---
+
+<section class="h-screen bg-center container mx-auto">
+  <div class="px-5 flex flex-col gap-4 h-full">
+    <div
+      class="flex items-center justify-center flex-col h-full xl:items-start -top-20 relative"
+    >
+      <h1
+        class="capitalize flex flex-col text-5xl font-semibold xl:text-5xl leading-none py-2 bg-clip-text text-stone-700 dark:text-yellow-500"
+      >
+        <span class="text-stone-500 dark:text-white/30 text-xs">Hola, soy</span>
+        Jorge Ruiz
+      </h1>
+      <p
+        class="text-stone-500 dark:text-[#fff]/70 xl:text-xl text-center text-balance py-4 xl:hidden"
+      >
+        +4 años de experiencia.
+        <span class="dark:text-fountain-blue-400 text-yellow-500"
+          >Desarrollador de software</span
+        > especializado en aplicaciones web.
+      </p>
+
+      <p
+        class="text-stone-500 dark:text-[#fff]/70 xl:text-xl text-center text-balance pt-4 hidden xl:block"
+      >
+        +4 años de experiencia.
+      </p>
+      <p
+        class="text-stone-500 dark:text-[#fff]/70 xl:text-xl text-center text-balance hidden xl:block"
+      >
+        <span class="dark:text-fountain-blue-400 text-yellow-500"
+          >Desarrollador de software</span
+        >
+      </p>
+      <p
+        class="text-stone-500 dark:text-[#fff]/70 xl:text-xl text-center text-balance hidden xl:block"
+      >
+        de Lima, Perú. Especializado en aplicaciones web.
+      </p>
+
+      <footer class="px-5 xl:p-0 py-5 xl:py-10">
+        <ul class="flex items-center gap-4 xl:gap-10">
+          {
+            SOCIAL_LINKS.map(({ component: Icon, href, title }) => {
+              return (
+                <a
+                  href={href}
+                  target="_blank"
+                  class="flex items-center gap-2 [&>span]:hover:text-yellow-500 [&>span]:hover:border-yellow-500"
+                >
+                  <span class=" transition-all duration-300 ease-in-out w-8 h-8 p-1 rounded-full flex items-center justify-center border border-stone-700 text-stone-700 dark:text-fountain-blue-500 dark:border-fountain-blue-500">
+                    {<Icon />}
+                  </span>
+                  <span class=" transition-all duration-300 ease-in-out text-stone-700 dark:text-fountain-blue-500">
+                    {title}
+                  </span>
+                </a>
+              );
+            })
+          }
+        </ul>
+      </footer>
+    </div>
+  </div>
+  <span id="projects"></span>
+</section>

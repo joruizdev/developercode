@@ -1,41 +1,42 @@
 ---
-import { github, linkedin } from "./Icons";
 import Navigation from "./Navigation.astro";
-
-const SOCIAL_LINKS = [
-    {
-        component: github,
-        title: 'github',
-        href: 'https://github.com/joruizdev',
-        icon: 'github.svg'
-    },
-    {
-        component: linkedin,
-        title: 'linkedin',
-        href: 'https://www.linkedin.com/in/jose-ruiz-7b5b3b1b3/',
-        icon: 'linkedin.svg'
-    }
-]
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header class="flex justify-between text-xl items-center p-5 text-fountain-blue-500 absolute xl:w-full">
-  <div class="flex items-center justify-center">
-    <span class="w-10 h-10 border-2 border-fountain-blue-500 rounded-full flex items-center justify-center">λ~</span>
-    <span class="hidden xl:block">developercode</span>
-  </div>
-  <Navigation />
-  <!-- <ul class="flex justify-center items-center gap-4">
-      {
-        SOCIAL_LINKS.map(({component: Icon, href}) => {
-          return (
-          <li class="border border-[#00ADB5] hover:border-stone-900 hover:bg-stone-100  w-8 h-8 p-1 rounded-full flex items-center justify-center text-[#00ADB5] hover:text-stone-900 transition-all duration-500 ease-in-out">
-            <a href={href} target="_blank">
-              <Icon />
-            </a>
-          </li>
-          )
-        })
-      }
-  </ul> -->
-  <!-- <Navigation /> -->
-</header>
+<section class="container mx-auto z-[99]" id="home">
+  <header
+    class="fixed flex justify-between text-xl items-center p-5 container mx-auto z-50"
+  >
+    <div
+      class="flex items-center justify-center gap-2 [&>span]:hover:text-yellow-500 [&>span]:hover:border-yellow-500"
+    >
+      <span
+        class="w-10 h-10 border border-stone-700 text-stone-700 dark:text-fountain-blue-500 dark:border-fountain-blue-500 rounded-full flex items-center justify-center transition-all ease-in-out duration-300"
+        >λ~
+      </span>
+      <span
+        class="text-stone-700 dark:text-fountain-blue-500 transition-all ease-in-out duration-300"
+        >developercode</span
+      >
+    </div>
+    <div class="flex items-center gap-5">
+      <Navigation />
+      <ThemeToggle />
+    </div>
+  </header>
+</section>
+
+<style>
+  header {
+    animation: nav-shadown 1s linear both;
+    animation-timeline: scroll();
+    animation-range: 0 100px;
+  }
+
+  @keyframes nav-shadown {
+    to {
+      @apply shadow-lg backdrop-blur dark:bg-[#323B47];
+    }
+  }
+</style>
+<!-- 323B47 -->

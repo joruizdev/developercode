@@ -1,0 +1,199 @@
+---
+import Html from "../icon/Html.astro";
+import Tailwind from "../icon/Tailwind.astro";
+import AstroIcon from "../icon/AstroIcon.astro";
+import React from "../icon/React.astro";
+import Code from "../icon/Code.astro";
+import Link from "../icon/Link.astro";
+import Redux from "../icon/Redux.astro";
+import Node from "../icon/Node.astro";
+import PostgreSQL from "../icon/PostgreSQL.astro";
+import Aws from "../icon/Aws.astro";
+import LinkButton from "../components/LinkButton.astro";
+
+const PROJECTS = [
+  {
+    title: "Página web Medicos Salud",
+    description: "Página web realizada para la empresa para la cual trabajo.",
+    note: "Por motivos de privacidad y confidencialidad no puedo mostrar los repositorios del proyecto.",
+    technology: [
+      {
+        name: "Html5",
+        component: Html,
+      },
+      {
+        name: "Tailwind",
+        component: Tailwind,
+      },
+      {
+        name: "Astro",
+        component: AstroIcon,
+      },
+      {
+        name: "React",
+        component: React,
+      },
+    ],
+    detail: [
+      "¡70% más rápida que antes!",
+      "Diseño moderno y atractivo.",
+      "Información precisa y directa.",
+      "Total optimización para SEO.",
+    ],
+    image: "/images/p1.webp",
+    url: "https://www.medicossalud.com",
+  },
+  {
+    title: "Reserva de citas",
+    description:
+      "Sistema de gestión de citas para el servicio de exámenes médicos para brevetes.",
+    note: "Por motivos de privacidad y confidencialidad no puedo mostrar los repositorios del proyecto.",
+    technology: [
+      {
+        name: "Html5",
+        component: Html,
+      },
+      {
+        name: "Tailwind",
+        component: Tailwind,
+      },
+      {
+        name: "Redux",
+        component: Redux,
+      },
+      {
+        name: "React",
+        component: React,
+      },
+      {
+        name: "Node JS",
+        component: Node,
+      },
+      {
+        name: "Postgres",
+        component: PostgreSQL,
+      },
+      {
+        name: "AWS",
+        component: Aws,
+      },
+    ],
+    detail: [
+      "Tiempo de atención reducido en un 50% mediante procesos eficientes y tecnología innovadora.",
+      "Experiencia de atención totalmente mejorada, con un servicio más rápido y personalizado.",
+      "Gestión de convenios con escuelas de conductores optimizada, fortaleciendo relaciones estratégicas.",
+      "Promociones potenciadas gracias a reportes precisos para decisiones más efectivas.",
+    ],
+    image: "/images/p2.webp",
+    url: "https://www.medicossalud.com",
+  },
+  {
+    title: "Página web Corporación Antojitos",
+    description:
+      "Página web realizada para la Corporacion Antojitos que se desempeña en el ámbito gastronómico.",
+    note: "Por motivos de privacidad y confidencialidad no puedo mostrar los repositorios del proyecto.",
+    technology: [
+      {
+        name: "Html5",
+        component: Html,
+      },
+      {
+        name: "Tailwind",
+        component: Tailwind,
+      },
+      {
+        name: "Astro",
+        component: AstroIcon,
+      },
+    ],
+    detail: [
+      "¡70% más rápida que antes!",
+      "Diseño moderno y atractivo.",
+      "Información precisa y directa.",
+      "Total optimización para SEO.",
+    ],
+    image: "/images/p3.webp",
+    url: "https://www.corporacionantojitos.pe",
+  },
+];
+---
+
+<section class="bg-stone-200/30 dark:bg-[#1d222b] py-24">
+  <div class="bg-center container mx-auto">
+    <h2
+      class="text-start text-3xl text-stone-700 dark:text-fountain-blue-500 pb-10 xl:text-4xl xl:pb-20 px-5 flex items-center gap-5"
+    >
+      Proyectos
+    </h2>
+    <div class="grid gap-5 relative">
+      {
+        PROJECTS.map(
+          ({ url, image, title, description, technology, note, detail }) => {
+            return (
+              <article class="rounded-md bg-[#f5f5f5] dark:bg-slate-700 mx-5 xl:flex xl:gap-10 relative border border-[#d6d6d6] dark:border-slate-700 hover:border-fountain-blue-700 dark:hover:border-yellow-500 transition-all ease-in-out duration-300 [&>a>img]:hover:scale-105 overflow-hidden">
+                <a
+                  href={url}
+                  class="xl:w-1/2 w-full z-20 overflow-hidden "
+                  target="_blank"
+                >
+                  <img
+                    class="rounded-l-md transition-all duration-300 ease-in-out"
+                    src={image}
+                    alt={title}
+                  />
+                </a>
+                <footer class="xl:w-full xl:h-full relative xl:flex xl:flex-col justify-between">
+                  <div>
+                    <h3 class="p-2 text-xl xl:pt-5 text-yellow-600 dark:text-yellow-500">
+                      {title}
+                    </h3>
+                    <p class="p-2 text-stone-700 dark:text-stone-300">
+                      {description}
+                    </p>
+                    <ul class="px-5 text-stone-700 dark:text-slate-300">
+                      {detail?.map((item) => (
+                        <li class=" list-disc">{item}</li>
+                      ))}
+                    </ul>
+                    <div class="p-2 pt-4">
+                      {
+                        <div class="flex gap-4 items-center flex-wrap">
+                          {technology?.map(({ name, component: Icon }) => {
+                            return (
+                              <span class=" dark:hover:text-yellow-500 hover:text-fountain-blue-500 dark:text-fountain-blue-500 text-fountain-blue-700 transition-all ease-in-out duration-400 flex gap-2 text-sm items-center">
+                                <Icon />
+                                {name}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      }
+                      <p class="text-xs py-5 dark:text-white/40 text-stone-600">
+                        Nota: {note}
+                      </p>
+                    </div>
+                  </div>
+                  <div class="p-2 flex items-center gap-5 relative pb-5">
+                    <LinkButton
+                      text="Code"
+                      icon={Code}
+                      url={url}
+                      target="_blank"
+                    />
+                    <LinkButton
+                      text="Preview"
+                      icon={Link}
+                      url={url}
+                      target="_blank"
+                    />
+                  </div>
+                </footer>
+              </article>
+            );
+          }
+        )
+      }
+    </div>
+  </div>
+  <span id="experience"></span>
+</section>

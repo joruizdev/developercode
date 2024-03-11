@@ -1,30 +1,55 @@
 ---
-import Experience from "../components/section/experience.astro";
-import Contact from "../components/section/contact.astro";
-import Footer from "../components/section/footer.astro";
-import Home from "../components/section/home.astro";
-import Project from "../components/section/project.jsx";
-import About from "../components/section/about.astro";
-
+import Experience from "../section/experience.astro";
+import Contact from "../section/contact.astro";
+import Footer from "../section/footer.astro";
+import Home from "../section/home.astro";
+import Project from "../section/project.astro";
+import About from "../section/about.astro";
+import Header from "../components/Header.astro";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link href="/styles/index.css" rel="stylesheet" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Jorge Developercode</title>
-	</head>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="/styles/index.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Jorge Developercode</title>
+  </head>
 
-	
-	<body class="container mx-auto bg-[#222831]">
-		<Home />
-		<Project />
-		<Experience />
-		<About />
-		<Contact />
-		<Footer />
-	</body>	
+  <body class="bg-[#F4F3F3] dark:bg-[#1b2027]">
+    <Header />
+    <Home />
+    <Project />
+    <Experience />
+    <About />
+    <Contact />
+    <Footer />
+  </body>
 </html>
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  #header-nav {
+    animation: blur linear both 0.5s;
+    animation-timeline: scroll();
+    animation-range: 0 500px;
+  }
+</style>
+
+<script is:inline>
+  window.getThemePreference = () => {
+    const localItem =
+      typeof localStorage !== "undefined" && localStorage.getItem("theme");
+    if (localItem) return localItem;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+
+  const isDark = window.getThemePreference() === "dark";
+  document.documentElement.classList.toggle("dark", isDark);
+</script>

@@ -1,0 +1,98 @@
+---
+const EXPERIENCE = [
+  {
+    title: "Jefe de sistemas",
+    subTitle: "Desarrollo de ERP",
+    dateInit: "2023",
+    dateEnd: "Actualidad",
+    company: "MEDICOS SALUD",
+    description:
+      "Lidero el equipo de desarrollo en la creación y implementación de un sistema ERP personalizado para optimizar las operaciones internas de la empresa.",
+    technology: "ReactJS, zustand, NodeJS, PostgresSQL, DigitalOcean, GitHub",
+    description2: "Las tecnologías que se estan usando para este proyecto son:",
+  },
+  {
+    title: "Jefe de sistemas",
+    subTitle:
+      "Dirección de Implementación de la Nueva Versión del Sistema Ocupacional",
+    dateInit: "2023",
+    dateEnd: "Actualidad",
+    company: "MEDICOS SALUD",
+    description:
+      "Actualmente lidero la implementación de la última versión del sistema ocupacional, supervisando la transición hacia nuevas funcionalidades y mejoras significativas en la gestión de exámenes médicos y procesos asociados.",
+  },
+  {
+    title: "Jefe de sistemas",
+    subTitle: "Implementación de sistema",
+    dateInit: "2022",
+    dateEnd: "2023",
+    company: "MEDICOS SALUD",
+    description:
+      "Diseñé y desarrollé un sistema integral para gestionar eficientemente las atenciones en el servicio de exámenes médicos para brevetes, abarcando desde el registro de citas hasta la generación de informes detallados.",
+    technology: "ReactJS, Redux, NodeJS, PostgresSQL, AWS Lightsail",
+    description2: "Las tecnologías que se usaron para este proyecto fueron:",
+  },
+  {
+    title: "Jefe de sistemas",
+    subTitle: "Dirección de mejora del Sistema Ocupacional",
+    dateInit: "2021",
+    dateEnd: "2021",
+    company: "MEDICOS SALUD",
+    description:
+      "Dirigí la gestión de mejora del sistema ocupacional, colaborando estrechamente con el proveedor para implementar nuevas funcionalidades, formatos y mejorar el control de ingresos en el proceso de exámenes médicos.",
+  },
+];
+---
+
+<section class="py-24">
+  <div class="bg-center container mx-auto">
+    <h2
+      class="text-start text-3xl text-stone-700 dark:text-fountain-blue-500 pb-10 xl:text-4xl xl:pb-20 px-5 flex items-center gap-5"
+    >
+      Experiencia
+    </h2>
+    {
+      EXPERIENCE.map(
+        ({
+          title,
+          dateInit,
+          dateEnd,
+          description,
+          technology,
+          subTitle,
+          company,
+          description2,
+        }) => {
+          return (
+            <div class="px-5 py-5">
+              <div class="flex dark:text-[#fff] text-stone-700 gap-4">
+                <div class="border border-l border-yellow-500 rounded-md" />
+                <div>
+                  <h3 class="text-xl">{title}</h3>
+
+                  <div class="text-sm py-1 flex items-center gap-2 w-50 text-yellow-500 dark:text-fountain-blue-300">
+                    <span>{company}</span>
+                    <span>{dateInit}</span>
+                    <span>-</span>
+                    <span>{dateEnd}</span>
+                  </div>
+
+                  <h4 class="pt-5 pb-3 text-fountain-blue-700 dark:text-yellow-500">
+                    {subTitle}
+                  </h4>
+
+                  <p class=" pb-4 text-pretty">{description}</p>
+                  {description2 && (
+                    <p class=" pb-4 text-pretty">{description2}</p>
+                  )}
+                  {technology && <p class=" pb-4">{technology}</p>}
+                </div>
+              </div>
+            </div>
+          );
+        }
+      )
+    }
+  </div>
+  <span id="about"></span>
+</section>
