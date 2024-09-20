@@ -1,5 +1,4 @@
 ---
-import Code from "./icon/Code.astro";
 const { text, icon: Icon, url, target } = Astro.props;
 ---
 
@@ -9,5 +8,5 @@ const { text, icon: Icon, url, target } = Astro.props;
   target={target}
 >
   {(<Icon />)}
-  {text}
+  <span class="hidden sm:block">{text}</span>
 </a>

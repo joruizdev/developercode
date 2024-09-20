@@ -170,16 +170,20 @@ const SOCIAL_LINKS = [
 </script> -->
 
 <script>
-  const navItems = document.querySelectorAll("header nav a");
+  const navItems = document.querySelectorAll("nav a");
 
   navItems.forEach((element) => {
     element.addEventListener("click", (e) => {
+      console.log(element.classList);
+
       // Remover la clase resaltada de todos los elementos del menú
       navItems.forEach((item) => {
+        item.classList.remove("dark:text-yellow-500");
         item.classList.remove("text-yellow-500");
       });
 
       // Agregar la clase resaltada al elemento clickeado
+      element.classList.add("dark:text-yellow-500");
       element.classList.add("text-yellow-500");
     });
   });
