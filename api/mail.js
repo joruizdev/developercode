@@ -1,33 +1,28 @@
-import { Resend } from 'resend';
-const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
+const RESEND_API_KEY = 're_WWNiDvWM_2na2VywXLFdtpucNp2kfTAKb';
 
-console.log('RESEND_API_KEY', RESEND_API_KEY);
+export async function POST(req, res) {
+  const data = req.body
 
-
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    try {
-      const data = req.body
-
-    const resend = new Resend(RESEND_API_KEY);
-
-    await resend.emails.send({
+  const response = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${RESEND_API_KEY}`,
+    },
+    body: JSON.stringify({
       from: 'Developercode <joruiz@developercode.dev>',
       to: ['joruiz@developercode.dev'],
       subject: 'CONTACTO WEB DEVELOPERCODE',
       html: `
-        <p>${data.name}</p>
-        <p>${data.mail}</p>
-        <p>${data.message}</p>
-      `,
-    });
+      <p>${data.name}</p>
+      <p>${data.mail}</p>
+      <p>${data.message}</p>
+    `,
+    }),
+  });
 
-      // Ejemplo de respuesta exitosa
-      res.status(200).json({ message: "Correo enviado con éxito", data })
-    } catch (error) {
-      res.status(500).json({ error: "Hubo un error al procesar la solicitud" })
-    }
-  } else {
-    res.status(405).json({ message: "Método no permitido" })
+  if (response.ok) {
+    const data = await response.json();
+    return Response.json(data);
   }
 }
