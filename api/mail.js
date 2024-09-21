@@ -22,9 +22,11 @@ export default async function handler(req) {
       html: `
         <html>
           <body style="font-family: Tahoma, Sans-Serif, Arial; color: #333;">
-            <span><strong>Nombre:</strong> ${name}</span>
-            <span><strong>Correo:</strong> ${email}</span>
-            <span><strong>Mensaje:</strong> ${message}</span>
+            <div style="display: flex; flex-direction: column;">
+              <span><strong>Nombre:</strong> ${name}</span>
+              <span><strong>Correo:</strong> ${email}</span>
+              <span><strong>Mensaje:</strong> ${message}</span>
+            </div>
             <p><strong>Fecha de Envío:</strong> ${new Date().toLocaleString()}</p>
             <footer style="margin-top: 20px; font-size: 12px; color: #888;">
               <p>Este correo fue enviado desde Developercode</p>
