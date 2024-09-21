@@ -1,6 +1,6 @@
 const RESEND_API_KEY = 're_WWNiDvWM_2na2VywXLFdtpucNp2kfTAKb';
 
-export default async function handler(req) {
+export default async function handler(req, res) {
   const {name, message, email} = req.body
 
   const response = await fetch('https://api.resend.com/emails', {
@@ -22,11 +22,9 @@ export default async function handler(req) {
       html: `
         <html>
           <body style="font-family: Tahoma, Sans-Serif, Arial; color: #333;">
-            <div style="display: flex; flex-direction: column;">
-              <span><strong>Nombre:</strong> ${name}</span>
-              <span><strong>Correo:</strong> ${email}</span>
-              <span><strong>Mensaje:</strong> ${message}</span>
-            </div>
+            <p><strong>Nombre:</strong> ${name}</p>
+            <p><strong>Correo:</strong> ${email}</p>
+            <p><strong>Mensaje:</strong> ${message}</p>
             <p><strong>Fecha de Envío:</strong> ${new Date().toLocaleString()}</p>
             <footer style="margin-top: 20px; font-size: 12px; color: #888;">
               <p>Este correo fue enviado desde Developercode</p>
@@ -41,6 +39,6 @@ export default async function handler(req) {
 
   if (response.ok) {
     const data = await response.json();
-    return Response.json(data);
+    return res.json(data);
   }
 }
