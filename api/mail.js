@@ -1,6 +1,9 @@
 import { Resend } from 'resend';
 const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
 
+console.log('RESEND_API_KEY', RESEND_API_KEY);
+
+
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
