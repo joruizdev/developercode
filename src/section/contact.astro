@@ -48,7 +48,7 @@
         <button
           type="submit"
           id="btnSend"
-          class="col-span-12 bg-yellow-500 dark:bg-fountain-blue-500 text-fountain-blue-950 hover:bg-fountain-blue-500 dark:hover:bg-yellow-500 transition-all duration-300 ease-in-out rounded-md py-2 mt-4 w-full xl:col-span-3"
+          class="col-span-12 bg-yellow-500 dark:bg-fountain-blue-500 text-fountain-blue-950 hover:bg-fountain-blue-500 dark:hover:bg-yellow-500 transition-all duration-300 ease-in-out rounded-md py-2 mt-4 w-full xl:col-span-3 disabled:bg-slate-300 disabled:text-stone-800"
         >
           Enviar
         </button>
@@ -59,9 +59,19 @@
 
 <script is:inline>
   const form = document.querySelector("form");
+  const btnSend = document.getElementById("bntSend");
+  const successMessage = document.createElement("p"); // Crear un elemento para el mensaje de éxito
+  successMessage.style.display = "none"; // Ocultarlo por defecto
+  successMessage.style.color = "green"; // Puedes estilizarlo según tus preferencias
+  successMessage.textContent = "Mensaje enviado satisfactoriamente";
+  form.appendChild(successMessage); // Añadir el mensaje al formulario
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    // Cambiar el texto del botón a "Enviando..."
+    btnSend.textContent = "Enviando...";
+    btnSend.disabled = true; // Deshabilitar el botón para evitar envíos múltiples
 
     const formData = new FormData(form);
     const res = Object.fromEntries(formData);
@@ -83,9 +93,20 @@
 
       const data = await response.json(); // Procesa la respuesta JSON
       console.log("Respuesta exitosa:", data);
+
+      // Mostrar el mensaje de éxito
+      successMessage.style.display = "block";
+
+      // Restablecer el formulario
+      form.reset();
     } catch (error) {
       // Maneja los errores
       console.error("Hubo un error con la solicitud:", error);
+      alert("Ocurrió un error al enviar el mensaje. Inténtalo de nuevo.");
+    } finally {
+      // Restaurar el texto del botón y habilitarlo
+      btnSend.textContent = "Enviar";
+      btnSend.disabled = false;
     }
   });
 </script>

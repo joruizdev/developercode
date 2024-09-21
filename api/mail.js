@@ -1,7 +1,7 @@
 const RESEND_API_KEY = 're_WWNiDvWM_2na2VywXLFdtpucNp2kfTAKb';
 
-export async function POST() {
-  const data = Request.body
+export async function POST(req) {
+  const data = req.json()
 
   const response = await fetch('https://api.resend.com/emails', {
     method: 'POST',
