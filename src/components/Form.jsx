@@ -1,14 +1,13 @@
-<section class="py-24">
-  <div class="bg-center container mx-auto">
-    <h2
-      class="text-start text-3xl text-stone-700 dark:text-fountain-blue-500 pb-10 xl:text-4xl xl:pb-20 px-5 flex items-center gap-5"
-    >
-      Contáctame
-    </h2>
-    <p class="text-stone-700 dark:text-[#fff] px-5 pb-5 text-pretty">
-      No dude en ponerse en contacto conmigo para cualquier consulta. Estaré
-      encantado de atenderle y ayudarle en lo que necesite.
-    </p>
+export function Form() {
+
+  function onSubmit (e) {
+    e.preventDefault()
+
+    console.log('enviar correo');
+    
+  }
+  
+  return (
     <form>
       <div class="grid grid-cols-12 gap-4 text-stone-700 dark:text-[#fff] px-5">
         <div class="col-span-12 flex flex-col xl:col-span-6">
@@ -17,7 +16,7 @@
             <input
               class="bg-gray-200 border-2 appearance-none rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-2 focus:border-yellow-500 transition-all duration-300 ease-in-out"
               type="text"
-              name="name"
+              id="name"
               placeholder="Jorge Ruiz"
             />
           </div>
@@ -29,7 +28,7 @@
             <input
               class="bg-gray-200 border-2 appearance-none rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-2 focus:border-yellow-500 transition-all duration-300 ease-in-out"
               type="email"
-              name="email"
+              id="email"
               placeholder="joruiz@developercode.dev"
             />
           </div>
@@ -41,51 +40,18 @@
             <textarea
               class="bg-gray-200 border-2 appearance-none rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-2 focus:border-yellow-500 transition-all duration-300 ease-in-out"
               placeholder="Deseo trabajar contigo..."
-              name="message"
+              id="message"
               rows={10}></textarea>
           </div>
         </div>
         <button
-          type="submit"
-          id="btnSend"
+          onClick={onSubmit}
+          type="button"
           class="col-span-12 bg-yellow-500 dark:bg-fountain-blue-500 text-fountain-blue-950 hover:bg-fountain-blue-500 dark:hover:bg-yellow-500 transition-all duration-300 ease-in-out rounded-md py-2 mt-4 w-full xl:col-span-3"
         >
           Enviar
         </button>
       </div>
     </form>
-  </div>
-</section>
-
-<script is:inline>
-  const form = document.querySelector("form");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const res = Object.fromEntries(formData);
-    const payload = JSON.stringify(res);
-
-    try {
-      // Realiza la petición POST
-      const response = await fetch("/api/mail.js", {
-        method: "POST",
-        body: payload,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Error en la petición");
-      }
-
-      const data = await response.json(); // Procesa la respuesta JSON
-      console.log("Respuesta exitosa:", data);
-    } catch (error) {
-      // Maneja los errores
-      console.error("Hubo un error con la solicitud:", error);
-    }
-  });
-</script>
+  );
+};
