@@ -62,7 +62,10 @@
   const btnSend = document.getElementById("btnSend");
   const successMessage = document.createElement("p"); // Crear un elemento para el mensaje de éxito
   successMessage.style.display = "none"; // Ocultarlo por defecto
-  successMessage.style.color = "green"; // Puedes estilizarlo según tus preferencias
+  successMessage.style.color = "#eab308"; // Puedes estilizarlo según tus preferencias
+  successMessage.style.paddingLeft = "5px";
+  successMessage.style.paddingRight = "5px";
+  successMessage.style.paddingTop = "5px";
   successMessage.textContent = "Mensaje enviado satisfactoriamente";
   form.appendChild(successMessage); // Añadir el mensaje al formulario
 
